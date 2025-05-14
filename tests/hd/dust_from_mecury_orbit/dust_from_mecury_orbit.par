@@ -1,0 +1,23 @@
+&meshlist
+  domain_size     = 1e10 1e10    # 模拟区域1e10m≈0.067AU (覆盖水星轨道)
+  base_grid       = 64 64        # 初始网格
+  refine_max_level= 5            # AMR层级
+  refine_threshold(1:3)= 1e-18 1e-19 1e-20  # 密度阈值触发AMR
+/
+
+&hdlist
+  solver          = 'hll'
+  dust_method     = 'pressureless'
+  n_species       = 3            # 必须与编译时设置一致
+  time_integrator = 'rk3'        # 三阶时间积分
+  courant         = 0.3          # CFL条件数
+  max_dt          = 1e3          # 最大时间步(秒)
+  max_wall_time   = 24           # 最大运行时间(小时)
+/
+
+&usrlist
+  GM_sun         = 1.3271244e20  # 太阳引力常数(m³/s²)
+  Q0             = 5e2           # 总质量释放率(kg/s)
+  AU             = 1.496e11      # 天文单位(m)
+  day            = 86400         # 日长(秒)
+/

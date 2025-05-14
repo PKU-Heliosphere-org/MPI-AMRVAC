@@ -1,5 +1,5 @@
  &filelist
-        base_filename='R_1d'
+        base_filename= 'amrvac' !'R_1d'
         autoconvert=.true.
         saveprim=.true.
  /
@@ -12,7 +12,7 @@
  /
 
  &stoplist
-        time_max=0.5d0
+        time_max=1.5d0
  /
 
  &methodlist

@@ -8,7 +8,7 @@
 !=====================================================
 
 &filelist
-        base_filename ='gem_2d'
+        base_filename ='amrvac' ! 原来的值为 'gem_2d'。修改base_filename匹配amrvac：修改gem_2d.par或amrvac.par
         typefilelog='regression_test'
         saveprim = .true.
         autoconvert = .true.
@@ -21,7 +21,7 @@
 /
 
  &stoplist
-        time_max=5.d-2
+        time_max=20.0d0 ! 将0.05改为更大的值
 /
 
  &methodlist
