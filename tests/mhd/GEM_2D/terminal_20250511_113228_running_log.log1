@@ -1,0 +1,490 @@
+(venv_jshept) (venv_jshept) jshept@jsheptdeMacBook-Air GitHubOrg % gfortran --version
+GNU Fortran (Homebrew GCC 14.2.0_1) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+(venv_jshept) (venv_jshept) jshept@jsheptdeMacBook-Air GitHubOrg % mpiexec --version
+mpiexec (Open MPI) 5.0.3
+
+Report bugs to https://www.open-mpi.org/community/help/
+(venv_jshept) (venv_jshept) jshept@jsheptdeMacBook-Air GitHubOrg % openmpi --version
+zsh: command not found: openmpi
+(venv_jshept) (venv_jshept) jshept@jsheptdeMacBook-Air GitHubOrg % bash
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+(venv_jshept) (venv_jshept) %n@%m %1~ %# openmpi --version
+bash: openmpi: command not found
+(venv_jshept) (venv_jshept) %n@%m %1~ %# zsh
+(venv_jshept) jshept@jsheptdeMacBook-Air GitHubOrg % perl --version
+
+This is perl 5, version 30, subversion 3 (v5.30.3) built for darwin-thread-multi-2level
+(with 2 registered patches, see perl -V for more detail)
+
+Copyright 1987-2020, Larry Wall
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using "man perl" or "perldoc perl".  If you have access to the
+Internet, point your browser at http://www.perl.org/, the Perl Home Page.
+
+(venv_jshept) jshept@jsheptdeMacBook-Air GitHubOrg % vim ~/.zshrc
+
+source /Users/jshept/Documents/GitHubOrg/venv_jshept/bin/activate
+GitHubOrg=/Users/jshept/Documents/GitHubOrg
+export AMRVAC_DIR=$GitHubOrg/MPI-AMRVAC
+export PATH=$PATH:.:$AMRVAC_DIR:$AMRVAC_DIR/tools
+
+(venv_jshept) jshept@jsheptdeMacBook-Air GitHubOrg % source ~/.zshrc
+(venv_jshept) jshept@jsheptdeMacBook-Air GitHubOrg % pwd
+/Users/jshept/Documents/GitHubOrg
+(venv_jshept) jshept@jsheptdeMacBook-Air GitHubOrg % cd MPI-AMRVAC 
+(venv_jshept) jshept@jsheptdeMacBook-Air MPI-AMRVAC % cd tests/mhd/GEM_2D 
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ls
+amrvac.par      correct_output  gem_2d.par      mod_usr.t       test.make
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % test.make
+zsh: permission denied: test.make
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ls -l test.make
+-rw-r--r--  1 jshept  staff  365  4 24  2024 test.make
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % chmode +x test.make
+zsh: command not found: chmode
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % chmod +x test.make 
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ls -l test.make    
+-rwxr-xr-x  1 jshept  staff  365  4 24  2024 test.make
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ./test.make
+./test.make: line 1: SETUP_FLAGS: command not found
+./test.make: line 2: SCHEME_DIR: command not found
+./test.make: line 3: SCHEMES: command not found
+./test.make: line 6: SCHEMES:%=gem_2d_%.log: command not found
+./test.make: line 6: TESTS: command not found
+./test.make: line 8: include: command not found
+./test.make: line 12: SCHEMES: command not found
+./test.make: line 12: s:%=gem_2d_%.log: command not found
+./test.make: line 12: SCHEME_DIR: command not found
+./test.make: line 12: s: command not found
+./test.make: line 12: foreach: command not found
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % make test.make 
+make: Nothing to be done for `test.make'.
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ls
+amrvac.par      correct_output  gem_2d.par      mod_usr.t       test.make
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % make
+make: *** No targets specified and no makefile found.  Stop.
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % make test.make
+make: Nothing to be done for `test.make'.
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % make -f test.make
+touch amrvac.h
+rsync -c amrvac.h /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/lib/1d_debug/amrvac.h
+rsync -c amrvac.h /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/lib/2d_debug/amrvac.h
+rsync -c amrvac.h /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/lib/3d_debug/amrvac.h
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/tools/fortran/compare_logs.f -o /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/tools/fortran/compare_logs.o 
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/tools/fortran/compare_logs.o -o /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/tools/fortran/compare_logs  
+rsync -c amrvac.h /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/lib/2d_debug/amrvac.h
+/Library/Developer/CommandLineTools/usr/bin/make -C /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/lib/2d_debug -f /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/arch/lib.make
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_connectivity.t > mod_connectivity.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_connectivity.f -o mod_connectivity.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_physicaldata.t > mod_physicaldata.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_physicaldata.f -o mod_physicaldata.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_constants.t > mod_constants.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_constants.f -o mod_constants.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_basic_types.t > mod_basic_types.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_basic_types.f -o mod_basic_types.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_variables.t > mod_variables.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_variables.f -o mod_variables.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_global_parameters.t > mod_global_parameters.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_global_parameters.f -o mod_global_parameters.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_usr_methods.t > mod_usr_methods.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_usr_methods.f -o mod_usr_methods.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_forest.t > mod_forest.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_forest.f -o mod_forest.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_physics_hllc.t > mod_physics_hllc.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_physics_hllc.f -o mod_physics_hllc.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_physics_ppm.t > mod_physics_ppm.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_physics_ppm.f -o mod_physics_ppm.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_physics_roe.t > mod_physics_roe.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_physics_roe.f -o mod_physics_roe.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_physics.t > mod_physics.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_physics.f -o mod_physics.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_weno.t > mod_weno.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_weno.f -o mod_weno.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_mp5.t > mod_mp5.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_mp5.f -o mod_mp5.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_ppm.t > mod_ppm.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_ppm.f -o mod_ppm.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_venk.t > mod_venk.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_venk.f -o mod_venk.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_limiter.t > mod_limiter.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_limiter.f -o mod_limiter.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_amr_fct.t > mod_amr_fct.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_amr_fct.f -o mod_amr_fct.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_ghostcells_update.t > mod_ghostcells_update.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_ghostcells_update.f -o mod_ghostcells_update.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_fix_conserve.t > mod_fix_conserve.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_fix_conserve.f -o mod_fix_conserve.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_geometry.t > mod_geometry.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_geometry.f -o mod_geometry.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_small_values.t > mod_small_values.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_small_values.f -o mod_small_values.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_supertimestepping.t > mod_supertimestepping.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_supertimestepping.f -o mod_supertimestepping.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_source.t > mod_source.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_source.f -o mod_source.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_tvd.t > mod_tvd.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_tvd.f -o mod_tvd.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_finite_volume.t > mod_finite_volume.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_finite_volume.f -o mod_finite_volume.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_finite_difference.t > mod_finite_difference.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_finite_difference.f -o mod_finite_difference.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/modules/mod_odeint.t > mod_odeint.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_odeint.f -o mod_odeint.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/modules/mod_random.t > mod_random.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_random.f -o mod_random.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/amrvacio/mod_calculate_xw.t > mod_calculate_xw.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_calculate_xw.f -o mod_calculate_xw.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/amrvacio/mod_slice.t > mod_slice.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_slice.f -o mod_slice.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/modules/mod_timing.t > mod_timing.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_timing.f -o mod_timing.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/particle/mod_particle_base.t > mod_particle_base.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_particle_base.f -o mod_particle_base.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/particle/mod_particle_advect.t > mod_particle_advect.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_particle_advect.f -o mod_particle_advect.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/particle/mod_particle_gca.t > mod_particle_gca.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_particle_gca.f -o mod_particle_gca.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/particle/mod_particle_lorentz.t > mod_particle_lorentz.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_particle_lorentz.f -o mod_particle_lorentz.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/particle/mod_particle_sample.t > mod_particle_sample.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_particle_sample.f -o mod_particle_sample.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/particle/mod_particles.t > mod_particles.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_particles.f -o mod_particles.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_advance.t > mod_advance.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_advance.f -o mod_advance.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_amrvac.t > mod_amrvac.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_amrvac.f -o mod_amrvac.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_cak_force.t > mod_cak_force.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_cak_force.f -o mod_cak_force.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_constrained_transport.t > mod_constrained_transport.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_constrained_transport.f -o mod_constrained_transport.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/amrvacio/mod_collapse.t > mod_collapse.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_collapse.f -o mod_collapse.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/amrvacio/mod_input_output.t > mod_input_output.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_input_output.f -o mod_input_output.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/amrvacio/mod_convert.t > mod_convert.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_convert.f -o mod_convert.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_gravity.t > mod_gravity.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_gravity.f -o mod_gravity.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_magnetofriction.t > mod_magnetofriction.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_magnetofriction.f -o mod_magnetofriction.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./m_octree_mg_2d.t > m_octree_mg_2d.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c m_octree_mg_2d.f -o m_octree_mg_2d.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_multigrid_coupling.t > mod_multigrid_coupling.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_multigrid_coupling.f -o mod_multigrid_coupling.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_radiative_cooling.t > mod_radiative_cooling.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_radiative_cooling.f -o mod_radiative_cooling.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_thermal_conduction.t > mod_thermal_conduction.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_thermal_conduction.f -o mod_thermal_conduction.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_thermal_emission.t > mod_thermal_emission.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_thermal_emission.f -o mod_thermal_emission.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_viscosity.t > mod_viscosity.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_viscosity.f -o mod_viscosity.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/mhd/mod_mhd_phys.t > mod_mhd_phys.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_mhd_phys.f -o mod_mhd_phys.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/mhd/mod_mhd_hllc.t > mod_mhd_hllc.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_mhd_hllc.f -o mod_mhd_hllc.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/mhd/mod_mhd_ppm.t > mod_mhd_ppm.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_mhd_ppm.f -o mod_mhd_ppm.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/mhd/mod_mhd_roe.t > mod_mhd_roe.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_mhd_roe.f -o mod_mhd_roe.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/mhd/mod_mhd.t > mod_mhd.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_mhd.f -o mod_mhd.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/modules/mod_trace_field.t > mod_trace_field.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_trace_field.f -o mod_trace_field.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/mhd/mod_trac.t > mod_trac.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_trac.f -o mod_trac.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./setdt.t > setdt.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c setdt.f -o setdt.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./amrini.t > amrini.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c amrini.f -o amrini.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./amr_solution_node.t > amr_solution_node.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c amr_solution_node.f -o amr_solution_node.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./errest.t > errest.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c errest.f -o errest.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_space_filling_curve.t > mod_space_filling_curve.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_space_filling_curve.f -o mod_space_filling_curve.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_load_balance.t > mod_load_balance.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_load_balance.f -o mod_load_balance.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_coarsen_refine.t > mod_coarsen_refine.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_coarsen_refine.f -o mod_coarsen_refine.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./amrgrid.t > amrgrid.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c amrgrid.f -o amrgrid.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./connectivity.t > connectivity.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c connectivity.f -o connectivity.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_lookup_table.t > mod_lookup_table.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_lookup_table.f -o mod_lookup_table.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_bc_data.t > mod_bc_data.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_bc_data.f -o mod_bc_data.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./boundary_conditions.t > boundary_conditions.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c boundary_conditions.f -o boundary_conditions.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./comm_lib.t > comm_lib.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c comm_lib.f -o comm_lib.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./forest.t > forest.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c forest.f -o forest.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./amr_neighbors.t > amr_neighbors.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c amr_neighbors.f -o amr_neighbors.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./refine.t > refine.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c refine.f -o refine.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./coarsen.t > coarsen.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c coarsen.f -o coarsen.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./set_B0.t > set_B0.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c set_B0.f -o set_B0.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./selectgrids.t > selectgrids.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c selectgrids.f -o selectgrids.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_init_datafromfile.t > mod_init_datafromfile.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_init_datafromfile.f -o mod_init_datafromfile.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./mod_initialize.t > mod_initialize.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_initialize.f -o mod_initialize.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/modules/mod_oneblock.t > mod_oneblock.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_oneblock.f -o mod_oneblock.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/modules/mod_lu.t > mod_lu.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_lu.f -o mod_lu.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/modules/mod_interpolation.t > mod_interpolation.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_interpolation.f -o mod_interpolation.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/modules/mod_point_searching.t > mod_point_searching.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_point_searching.f -o mod_point_searching.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/amrvacio/convert.t > convert.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c convert.f -o convert.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_dust.t > mod_dust.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_dust.f -o mod_dust.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_lfff.t > mod_lfff.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_lfff.f -o mod_lfff.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_pfss.t > mod_pfss.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_pfss.f -o mod_pfss.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_tdfluxrope.t > mod_tdfluxrope.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_tdfluxrope.f -o mod_tdfluxrope.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_dipole.t > mod_dipole.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_dipole.f -o mod_dipole.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_solar_atmosphere.t > mod_solar_atmosphere.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_solar_atmosphere.f -o mod_solar_atmosphere.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_rotating_frame.t > mod_rotating_frame.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rotating_frame.f -o mod_rotating_frame.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_bremsstrahlung.t > mod_bremsstrahlung.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_bremsstrahlung.f -o mod_bremsstrahlung.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/physics/mod_rbsl.t > mod_rbsl.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rbsl.f -o mod_rbsl.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rho/mod_rho_phys.t > mod_rho_phys.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rho_phys.f -o mod_rho_phys.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rho/mod_rho_roe.t > mod_rho_roe.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rho_roe.f -o mod_rho_roe.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rho/mod_rho.t > mod_rho.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rho.f -o mod_rho.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/hd/mod_hd_phys.t > mod_hd_phys.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_hd_phys.f -o mod_hd_phys.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/hd/mod_hd_roe.t > mod_hd_roe.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_hd_roe.f -o mod_hd_roe.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/hd/mod_hd_hllc.t > mod_hd_hllc.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_hd_hllc.f -o mod_hd_hllc.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/hd/mod_hd_ppm.t > mod_hd_ppm.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_hd_ppm.f -o mod_hd_ppm.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/hd/mod_hd.t > mod_hd.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_hd.f -o mod_hd.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rhd/mod_opal_opacity.t > mod_opal_opacity.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_opal_opacity.f -o mod_opal_opacity.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rhd/mod_afld.t > mod_afld.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_afld.f -o mod_afld.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rhd/mod_fld.t > mod_fld.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_fld.f -o mod_fld.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rhd/mod_rhd_phys.t > mod_rhd_phys.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rhd_phys.f -o mod_rhd_phys.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rhd/mod_rhd_roe.t > mod_rhd_roe.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rhd_roe.f -o mod_rhd_roe.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rhd/mod_rhd_hllc.t > mod_rhd_hllc.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rhd_hllc.f -o mod_rhd_hllc.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rhd/mod_rhd_ppm.t > mod_rhd_ppm.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rhd_ppm.f -o mod_rhd_ppm.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rhd/mod_rhd.t > mod_rhd.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rhd.f -o mod_rhd.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rhd/mod_cak_opacity.t > mod_cak_opacity.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_cak_opacity.f -o mod_cak_opacity.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/nonlinear/mod_kdv.t > mod_kdv.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_kdv.f -o mod_kdv.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/nonlinear/mod_nonlinear_phys.t > mod_nonlinear_phys.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_nonlinear_phys.f -o mod_nonlinear_phys.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/nonlinear/mod_nonlinear_roe.t > mod_nonlinear_roe.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_nonlinear_roe.f -o mod_nonlinear_roe.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/nonlinear/mod_nonlinear.t > mod_nonlinear.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_nonlinear.f -o mod_nonlinear.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rd/mod_rd_phys.t > mod_rd_phys.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rd_phys.f -o mod_rd_phys.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/rd/mod_rd.t > mod_rd.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_rd.f -o mod_rd.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/mf/mod_mf_phys.t > mod_mf_phys.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_mf_phys.f -o mod_mf_phys.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/mf/mod_mf.t > mod_mf.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_mf.f -o mod_mf.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/twofl/mod_hyperdiffusivity.t > mod_hyperdiffusivity.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_hyperdiffusivity.f -o mod_hyperdiffusivity.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/twofl/mod_twofl_phys.t > mod_twofl_phys.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_twofl_phys.f -o mod_twofl_phys.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/twofl/mod_twofl_hllc.t > mod_twofl_hllc.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_twofl_hllc.f -o mod_twofl_hllc.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/twofl/mod_twofl_ppm.t > mod_twofl_ppm.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_twofl_ppm.f -o mod_twofl_ppm.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/twofl/mod_twofl_roe.t > mod_twofl_roe.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_twofl_roe.f -o mod_twofl_roe.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/twofl/mod_twofl.t > mod_twofl.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_twofl.f -o mod_twofl.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/ard/mod_ard_phys.t > mod_ard_phys.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_ard_phys.f -o mod_ard_phys.o 
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/ard/mod_ard.t > mod_ard.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_ard.f -o mod_ard.o 
+rm -f libamrvac.a
+ar rcs libamrvac.a mod_advance.o setdt.o amrini.o amr_solution_node.o errest.o amrgrid.o mod_finite_volume.o mod_tvd.o mod_finite_difference.o mod_load_balance.o connectivity.o boundary_conditions.o comm_lib.o forest.o amr_neighbors.o mod_coarsen_refine.o refine.o coarsen.o set_B0.o selectgrids.o mod_geometry.o mod_ghostcells_update.o mod_small_values.o mod_ppm.o mod_mp5.o mod_weno.o mod_venk.o mod_limiter.o mod_fix_conserve.o mod_source.o mod_initialize.o mod_amrvac.o mod_bc_data.o mod_lookup_table.o mod_amr_fct.o mod_constrained_transport.o mod_multigrid_coupling.o mod_space_filling_curve.o mod_supertimestepping.o mod_init_datafromfile.o m_octree_mg_2d.o mod_timing.o mod_odeint.o mod_oneblock.o mod_lu.o mod_random.o mod_interpolation.o mod_point_searching.o mod_trace_field.o mod_input_output.o mod_convert.o convert.o mod_collapse.o mod_slice.o mod_calculate_xw.o mod_physics.o mod_physics_roe.o mod_physics_hllc.o mod_physics_ppm.o mod_thermal_conduction.o mod_radiative_cooling.o mod_dust.o mod_viscosity.o mod_gravity.o mod_lfff.o mod_pfss.o mod_tdfluxrope.o mod_magnetofriction.o mod_dipole.o mod_solar_atmosphere.o mod_thermal_emission.o mod_rotating_frame.o mod_bremsstrahlung.o mod_rbsl.o mod_cak_force.o mod_rho_phys.o mod_rho_roe.o mod_rho.o mod_hd_phys.o mod_hd_roe.o mod_hd_hllc.o mod_hd_ppm.o mod_hd.o mod_mhd_phys.o mod_mhd_roe.o mod_mhd_hllc.o mod_mhd_ppm.o mod_mhd.o mod_trac.o mod_rhd_phys.o mod_rhd_roe.o mod_rhd_hllc.o mod_rhd_ppm.o mod_rhd.o mod_fld.o mod_afld.o mod_opal_opacity.o mod_cak_opacity.o mod_particles.o mod_particle_base.o mod_particle_advect.o mod_particle_lorentz.o mod_particle_gca.o mod_particle_sample.o mod_nonlinear_phys.o mod_kdv.o mod_nonlinear.o mod_nonlinear_roe.o mod_rd_phys.o mod_rd.o mod_mf_phys.o mod_mf.o mod_twofl_phys.o mod_twofl.o mod_twofl_hllc.o mod_twofl_roe.o mod_twofl_ppm.o mod_hyperdiffusivity.o mod_ard_phys.o mod_ard.o mod_global_parameters.o mod_usr_methods.o mod_forest.o mod_physicaldata.o mod_connectivity.o mod_constants.o mod_variables.o mod_basic_types.o
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/./amrvac.t > amrvac.f
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 mod_usr.t > mod_usr.f
+/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/vacpp.pl  -d=2 /Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/src/amrvac.t > amrvac.f
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c mod_usr.f -o mod_usr.o -I/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/lib/2d_debug
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -c amrvac.f -o amrvac.o -I/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/lib/2d_debug
+mpif90 -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized -cpp -ffree-form -O2 -finit-real=snan -finit-integer=-2147483648 -g -fbacktrace -fcheck=all -ffpe-trap=invalid,zero,overflow -Wall -Wno-unused-dummy-argument -Wno-unused-function -Wno-unused -Wno-zerotrip -Wno-maybe-uninitialized amrvac.o mod_usr.o -o amrvac -L/Users/jshept/Documents/GitHubOrg/MPI-AMRVAC/lib/2d_debug -lamrvac
+rm mod_usr.o amrvac.f amrvac.o
+PASSED gem_2d_2step_tvdlf_mm.log
+PASSED gem_2d_2step_tvdmu_al.log
+PASSED gem_2d_3step_hll_cada.log
+PASSED gem_2d_4step_hll_mc.log
+PASSED gem_2d_4step_hllc_ko.log
+PASSED gem_2d_rk4_tvdlf_cada.log
+PASSED gem_2d_3step_hlld_cada.log
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % mpirun -np 4 ./amrvac -i amrvac.par
+ -----------------------------------------------------------------------------
+ -----------------------------------------------------------------------------
+ |         __  __ ____ ___        _    __  __ ______     ___    ____         |
+ |        |  \/  |  _ \_ _|      / \  |  \/  |  _ \ \   / / \  / ___|        |
+ |        | |\/| | |_) | |_____ / _ \ | |\/| | |_) \ \ / / _ \| |            |
+ |        | |  | |  __/| |_____/ ___ \| |  | |  _ < \ V / ___ \ |___         |
+ |        |_|  |_|_|  |___|   /_/   \_\_|  |_|_| \_\ \_/_/   \_\____|        |
+ -----------------------------------------------------------------------------
+ -----------------------------------------------------------------------------
+ Reading amrvac.par
+ 
+ Output type | tsavestart |  dtsave   | ditsave | itsave(1) | tsave(1)
+         log | 0.000E+00  | ********* |    100  |      0    | *********
+      normal | 0.000E+00  | 0.200E+01 | ******  |      0    | *********
+       slice | 0.000E+00  | ********* | ******  | ******    | *********
+   collapsed | 0.000E+00  | ********* | ******  | ******    | *********
+    analysis | 0.000E+00  | ********* | ******  | ******    | *********
+ 
+         Domain size (cells): 64 64 
+                Level one dx: 0.400E+00 0.200E+00 
+           Refine estimation: Lohner's scheme
+           restart_from_file:  undefined
+                  converting: F
+
+ Doing 2D GEM challenge, resistive MHD
+ iprob=           1
+ resistivity equal to=   5.0000000000000001E-003
+ Hall parameter equal to=   0.0000000000000000     
+ -------------------------------------------------------------------------------
+ Startup phase took :             0.128 sec
+ -------------------------------------------------------------------------------
+ Start integrating, print status every  3.00E+01 seconds
+   #        it        time          dt  wc-time(s)
+   #         0  0.0000E+00  2.1752E-03  8.1000E-04
+ -------------------------------------------------------------------------------
+ Saving visual data. Coordinate directions and variable names are:
+           1 X               
+           2 Y               
+           3 rho             
+           4 v1              
+           5 v2              
+           6 p               
+           7 b1              
+           8 b2              
+           9 jz              
+          10 schlier         
+          11 curlvz          
+          12 divb            
+ time =   0.0000000000000000     
+ -------------------------------------------------------------------------------
+   #      1522  1.3825E+01  6.8158E-03  3.0017E+01
+ Total timeloop took        :       53.154 sec
+ Time spent on AMR          :        2.108 sec
+                  Percentage:         3.97 %
+ Time spent on IO in loop   :        0.323 sec
+                  Percentage:         0.61 %
+ Time spent on ghost cells  :        3.214 sec
+                  Percentage:         6.05 %
+ Time spent on computing    :       47.510 sec
+                  Percentage:        89.38 %
+ Cells updated / proc / sec :    1.344E+06
+ Total time spent on IO     :        0.323 sec
+ Total timeintegration took :       53.155 sec
+   #      2431   2.000E+01   0.000E+00   5.315E+01
+ -------------------------------------------------------------------------------
+ Finished AMRVAC in :            53.283 sec
+ -------------------------------------------------------------------------------
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ls
+amrvac                          gem_2d0004.vtu                  gem_2d_2step_tvdlf_mm0000.vtu   gem_2d_4step_hllc_ko0000.vtu
+amrvac.h                        gem_2d0005.dat                  gem_2d_2step_tvdmu_al.log       gem_2d_rk4_tvdlf_cada.log
+amrvac.par                      gem_2d0005.vtu                  gem_2d_2step_tvdmu_al0000.dat   gem_2d_rk4_tvdlf_cada0000.dat
+correct_output                  gem_2d0006.dat                  gem_2d_2step_tvdmu_al0000.vtu   gem_2d_rk4_tvdlf_cada0000.vtu
+gem_2d.log                      gem_2d0006.vtu                  gem_2d_3step_hll_cada.log       makefile
+gem_2d.par                      gem_2d0007.dat                  gem_2d_3step_hll_cada0000.dat   mod_usr.f
+gem_2d0000.dat                  gem_2d0007.vtu                  gem_2d_3step_hll_cada0000.vtu   mod_usr.mod
+gem_2d0000.vtu                  gem_2d0008.dat                  gem_2d_3step_hlld_cada.log      mod_usr.t
+gem_2d0001.dat                  gem_2d0008.vtu                  gem_2d_3step_hlld_cada0000.dat  run.log
+gem_2d0001.vtu                  gem_2d0009.dat                  gem_2d_3step_hlld_cada0000.vtu  run_with_logging.sh
+gem_2d0002.dat                  gem_2d0009.vtu                  gem_2d_4step_hll_mc.log         setup.log
+gem_2d0002.vtu                  gem_2d0010.dat                  gem_2d_4step_hll_mc0000.dat     start_terminal_session.sh
+gem_2d0003.dat                  gem_2d0010.vtu                  gem_2d_4step_hll_mc0000.vtu     test.make
+gem_2d0003.vtu                  gem_2d_2step_tvdlf_mm.log       gem_2d_4step_hllc_ko.log
+gem_2d0004.dat                  gem_2d_2step_tvdlf_mm0000.dat   gem_2d_4step_hllc_ko0000.dat
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ls -l start_terminal_session.sh 
+-rw-r--r--  1 jshept  staff  333  5 11 11:31 start_terminal_session.sh
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % chmod +x start_terminal_session.sh 
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ./start_terminal_session.sh 
+Starting terminal session logging to terminal_20250511_113228_running_log.log
+To exit logging session, type 'exit' or press Ctrl-D
+Script started, output file is terminal_20250511_113228_running_log.log
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ls
+amrvac                                          gem_2d_2step_tvdlf_mm0000.vtu
+amrvac.h                                        gem_2d_2step_tvdmu_al.log
+amrvac.par                                      gem_2d_2step_tvdmu_al0000.dat
+correct_output                                  gem_2d_2step_tvdmu_al0000.vtu
+gem_2d.log                                      gem_2d_3step_hll_cada.log
+gem_2d.par                                      gem_2d_3step_hll_cada0000.dat
+gem_2d0000.dat                                  gem_2d_3step_hll_cada0000.vtu
+gem_2d0000.vtu                                  gem_2d_3step_hlld_cada.log
+gem_2d0001.dat                                  gem_2d_3step_hlld_cada0000.dat
+gem_2d0001.vtu                                  gem_2d_3step_hlld_cada0000.vtu
+gem_2d0002.dat                                  gem_2d_4step_hll_mc.log
+gem_2d0002.vtu                                  gem_2d_4step_hll_mc0000.dat
+gem_2d0003.dat                                  gem_2d_4step_hll_mc0000.vtu
+gem_2d0003.vtu                                  gem_2d_4step_hllc_ko.log
+gem_2d0004.dat                                  gem_2d_4step_hllc_ko0000.dat
+gem_2d0004.vtu                                  gem_2d_4step_hllc_ko0000.vtu
+gem_2d0005.dat                                  gem_2d_rk4_tvdlf_cada.log
+gem_2d0005.vtu                                  gem_2d_rk4_tvdlf_cada0000.dat
+gem_2d0006.dat                                  gem_2d_rk4_tvdlf_cada0000.vtu
+gem_2d0006.vtu                                  makefile
+gem_2d0007.dat                                  mod_usr.f
+gem_2d0007.vtu                                  mod_usr.mod
+gem_2d0008.dat                                  mod_usr.t
+gem_2d0008.vtu                                  run.log
+gem_2d0009.dat                                  run_with_logging.sh
+gem_2d0009.vtu                                  setup.log
+gem_2d0010.dat                                  start_terminal_session.sh
+gem_2d0010.vtu                                  terminal_20250511_113228_running_log.log
+gem_2d_2step_tvdlf_mm.log                       test.make
+gem_2d_2step_tvdlf_mm0000.dat
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % vim terminal_20250511_113228_running_log.log 
+(venv_jshept) jshept@jsheptdeMacBook-Air GEM_2D % ppython[?2004l
+
+Python 3.12.4 (main, Jun  7 2024, 04:28:19) [Clang 14.0.0 (clang-1400.0.29.202)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 20/0.05
+400.0
+>>> 20/0.05*3/60
+20.0
+>>> 
