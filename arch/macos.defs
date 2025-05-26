@@ -1,0 +1,6 @@
+F90=mpif90
+FFLAGS = -c
+F90FLAGS = -cpp -ffree-form -O3 -Wall -Wno-unused-dummy-argument \
+-Wno-unused-function -Wno-unused -Wno-uninitialized -Wno-zerotrip -Wno-target-lifetime
+# 添加明确的系统库路径
+LINK= $(F90) $(F90FLAGS) -Wl,-L/usr/lib

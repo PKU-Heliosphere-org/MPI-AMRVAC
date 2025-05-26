@@ -46,7 +46,7 @@ include $(AMRVAC_DIR)/arch/rules.make
 vpath %.t $(SRC_DIR)
 
 # Keep mod_usr.f for inspection
-.PRECIOUS: amrvac.f mod_usr.f
+.PRECIOUS: mod_usr.f
 
 # Intermediate files are removed
 .INTERMEDIATE: amrvac.o mod_usr.o mod_usr.mod
